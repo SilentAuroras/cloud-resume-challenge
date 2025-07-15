@@ -22,6 +22,7 @@ override.tf.json
 
 # Lock file (used to avoid concurrent state modifications)
 .terraform.tfstate.lock.info
+.terraform.lock.hcl
 
 # Terraform CLI configuration files
 .terraformrc
