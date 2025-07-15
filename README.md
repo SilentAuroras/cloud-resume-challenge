@@ -3,7 +3,7 @@
 This is a learning repository for performing the Cloud Resume Challenge as outlined below:
 - https://cloudresumechallenge.dev/
 
-This challenge will utilize Terraform to provision the challenge in GCP. The deployment steps are as follows:
+This challenge will use Terraform to provision the infrastructure in GCP. The deployment steps are as follows:
 1. Setup GCP CLI authentication
    1. ```gcloud auth application-default login```
    2. ```gcloud config set project PROJECT_ID```
