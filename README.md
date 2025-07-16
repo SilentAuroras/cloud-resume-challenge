@@ -7,7 +7,14 @@ This challenge will use Terraform to provision the infrastructure in GCP. The de
 1. Setup GCP CLI authentication
    1. ```gcloud auth application-default login```
    2. ```gcloud config set project PROJECT_ID```
-2. Initialize terraform
+2. Create a terraform.tfvars file with the following variables set:
+```
+   project_name = ""
+   region = ""
+   domain = ""
+   bucket_suffix = ""
+```
+3. Initialize terraform
    1. ```cd terraform-gcp/```
    2. ```terraform init```
    3. ```terraform plan```
@@ -22,7 +29,7 @@ Requirements:
 - [x] Obtain the Google Cloud Digital Leader certification (or higher)
 - [x] Write your resume in HTML
 - [x] Style your resume with CSS
-- [ ] Deploy your HTML resume as a static website using Google Cloud Storage
+- [x] Deploy your HTML resume as a static website using Google Cloud Storage
 - [ ] Enable HTTPS using a Cloud Load Balancer and Cloud CDN
 - [ ] Point a custom DNS domain to your load balancer endpoint
 - [ ] Add a Javascript visitor counter to your resume webpage
