@@ -11,7 +11,6 @@ This challenge will use Terraform to provision the infrastructure in GCP. The de
 ```
    project_name = ""
    region = ""
-   domain = ""
    bucket_suffix = ""
 ```
 3. Initialize terraform
@@ -30,9 +29,12 @@ Requirements:
 - [x] Write your resume in HTML
 - [x] Style your resume with CSS
 - [x] Deploy your HTML resume as a static website using Google Cloud Storage
-- [ ] Enable HTTPS using a Cloud Load Balancer and Cloud CDN
-- [ ] Point a custom DNS domain to your load balancer endpoint
-- [ ] Add a Javascript visitor counter to your resume webpage
+- [x] Enable HTTPS using a Cloud Load Balancer and Cloud CDN
+  - Not buying a domain, so just using HTTP
+  - Instead, setting up cloud load balancer with direct IP + HTTP
+- [x] Point a custom DNS domain to your load balancer endpoint
+  - Not buying a domain
+- [ ] Add a JavaScript visitor counter to your resume webpage
 - [ ] Store and update the visitor count in Google Cloud Firestore
 - [ ] Create an API (e.g., with Google Cloud Functions) to interact with Firestore
 - [ ] Write the serverless function in Python using Google Cloud Client Libraries
