@@ -39,7 +39,7 @@ Requirements:
 - [ ] Create an API (e.g., with Google Cloud Functions) to interact with Firestore
 - [ ] Write the serverless function in Python using Google Cloud Client Libraries
 - [ ] Include tests for your Python code
-- [ ] Define infrastructure using Terraform (Infrastructure as Code)
+- [x] Define infrastructure using Terraform (Infrastructure as Code)
 - [ ] Use GitHub for source control of backend code
 - [ ] Set up CI/CD for backend with Cloud Build (run tests, deploy on success)
 - [ ] Use a separate GitHub repo for website code and set up CI/CD for frontend
