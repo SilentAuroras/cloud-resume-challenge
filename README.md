@@ -1,6 +1,6 @@
 # Cloud Resume Challenge
 
-This is a learning repository for performing the Cloud Resume Challenge as outlined below:
+This is a learning repository for performing the Cloud Resume Challenge as outlined below. The checklist below follows the website's list.
 - https://cloudresumechallenge.dev/
 
 This challenge will use Terraform to provision the infrastructure in GCP. The deployment steps are as follows:
@@ -25,7 +25,8 @@ Requirements:
 - Terraform
   
 # Checklist
-- [x] Obtain the Google Cloud Digital Leader certification (or higher)
+- [x] Get the Google Cloud Digital Leader certification (or higher)
+  - Associate Cloud Engineer obtained
 - [x] Write your resume in HTML
 - [x] Style your resume with CSS
 - [x] Deploy your HTML resume as a static website using Google Cloud Storage
@@ -44,3 +45,4 @@ Requirements:
 - [ ] Set up CI/CD for backend with Cloud Build (run tests, deploy on success)
 - [ ] Use a separate GitHub repo for website code and set up CI/CD for frontend
 - [ ] Write and link a short blog post about your project learnings
+  - Adding screenshots and documentation here
