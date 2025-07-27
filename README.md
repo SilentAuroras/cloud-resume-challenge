@@ -36,7 +36,7 @@ Requirements:
 - [x] Point a custom DNS domain to your load balancer endpoint
   - Not buying a domain
 - [ ] Add a JavaScript visitor counter to your resume webpage
-- [ ] Store and update the visitor count in Google Cloud Firestore
+- [x] Store and update the visitor count in Google Cloud Firestore
 - [ ] Create an API (e.g., with Google Cloud Functions) to interact with Firestore
 - [ ] Write the serverless function in Python using Google Cloud Client Libraries
 - [ ] Include tests for your Python code

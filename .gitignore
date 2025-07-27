@@ -14,6 +14,9 @@ crash.*.log
 *.tfvars
 *.tfvars.json
 
+# Zip files
+*.zip
+
 # Override files (local, not to be committed)
 override.tf
 override.tf.json
@@ -35,3 +38,4 @@ terraform.rc
 
 # JetBrains IDE (e.g., IntelliJ, PyCharm)
 .idea/
+.vscode/
