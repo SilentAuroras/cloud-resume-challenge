@@ -37,8 +37,8 @@ Requirements:
   - Not buying a domain
 - [ ] Add a JavaScript visitor counter to your resume webpage
 - [x] Store and update the visitor count in Google Cloud Firestore
-- [ ] Create an API (e.g., with Google Cloud Functions) to interact with Firestore
-- [ ] Write the serverless function in Python using Google Cloud Client Libraries
+- [x] Create an API (e.g., with Google Cloud Functions) to interact with Firestore
+- [x] Write the serverless function in Python using Google Cloud Client Libraries
 - [ ] Include tests for your Python code
 - [x] Define infrastructure using Terraform (Infrastructure as Code)
 - [ ] Use GitHub for source control of backend code
