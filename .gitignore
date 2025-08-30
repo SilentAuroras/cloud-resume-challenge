@@ -14,6 +14,9 @@ crash.*.log
 *.tfvars
 *.tfvars.json
 
+# Remove the created resume.js so do not publish endpoint
+resume.js
+
 # Zip files
 *.zip
 
