@@ -7,12 +7,8 @@ async function visitorCount() {
 
 	// Handle function
 	try {
-		const response = await fetch(function_url, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-		});
+        // Just send GET, have function pull and update database
+		const response = await fetch(function_url, { method: "GET" });
 
 		// Check for response
 		if (!response.ok) {
@@ -31,4 +27,6 @@ async function visitorCount() {
 }
 
 // Run function on page load
-windows.addEventListener("DOMContentLoaded", visitorCount());
+document.addEventListener("DOMContentLoaded", function() {
+  visitorCount();
+});

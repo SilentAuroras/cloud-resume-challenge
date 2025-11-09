@@ -8,23 +8,19 @@ db = firestore.Client()
 # Setup entry point for the Cloud Function
 @functions_framework.http
 def entry_point(request):
+    try:
+        # Reference to a single document to store the counter
+        doc_ref = db.collection("count").document("visitor_count_doc")
 
-    # Grab Json request
-    data = request.get_json()
+        # Atomically increment the count by 1
+        doc_ref.set({"count": firestore.Increment(1)}, merge=True)
 
-    # Check for visitor count in the request
-    if not data or 'visitor_count' not in data:
-        return jsonify({'error': 'Missing visitor_count'}), 400
+        # Optionally read back the updated value
+        doc = doc_ref.get()
+        new_count = doc.get("count", 0)
 
-    # Update the Firestore database
-    count = data['visitor_count']
+        return jsonify({"status": "success", "count": new_count}), 200
 
-    # Increase count
-    count = count + 1
-
-    # Update firestore
-    doc_ref = db.collection('visitor_counts').document()
-    doc_ref.set({'count': count})
-
-    # Return success response
-    return jsonify({'status': 'success', 'count': count}), 200
+    except Exception as e:
+        print(f"Error updating count: {e}")
+        return jsonify({"status": "error", "message": "error"}), 500

@@ -36,7 +36,7 @@ resource "google_storage_bucket" "static-site" {
     }
 
     cors {
-        origin = [""]
+        origin = ["*"]
         method = ["GET", "HEAD", "POST", "DELETE"]
         response_header = ["*"]
         max_age_seconds = 3600
@@ -62,7 +62,7 @@ resource "google_storage_bucket_object" "html_obj" {
 resource "google_storage_bucket_object" "css_obj" {
     name = "resume.css"
     source = "../website/resume.css"
-    content_type = "text/plain"
+    content_type = "text/css"
     bucket = google_storage_bucket.static-site.id
 }
 
@@ -79,7 +79,7 @@ resource "local_file" "js_updated" {
 resource "google_storage_bucket_object" "js_obj" {
     name = "resume.js"
     source = "../website/resume.js"
-    content_type = "text/plain"
+    content_type = "application/javascript"
     bucket = google_storage_bucket.static-site.id
     depends_on = [ local_file.js_updated ]
 }
