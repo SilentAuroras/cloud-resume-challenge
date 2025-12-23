@@ -18,13 +18,11 @@ This challenge will use Terraform to provision the infrastructure in GCP. The de
    domain = ""
 ```
 
-3. Enable relevant APIs
-   Eventarc API
-4. Initialize terraform
+3. Initialize terraform
     1. `cd terraform-gcp/`
     2. `terraform init`
     3. `terraform plan`
-5. Deploy
+4. Deploy
     1. `terraform apply`
 
 Requirements:

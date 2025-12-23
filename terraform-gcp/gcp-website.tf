@@ -17,7 +17,9 @@ variable "domain" {
 resource "google_compute_managed_ssl_certificate" "tls_cert" {
   name = "tls-cert-url-map"
   managed {
-    domains = [var.domain]
+    domains = [
+      "www.resume.${var.domain}"
+    ]
   }
 }
 
