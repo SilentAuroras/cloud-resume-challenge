@@ -2,12 +2,12 @@
 terraform {
 	required_providers {
 		random = {
-          source  = "hashicorp/random"
-          version = "3.6.3"
+			source  = "hashicorp/random"
+			version = "3.9.0"
 		}
 		google = {
-          source  = "hashicorp/google"
-          version = "7.10.0"
+			source  = "hashicorp/google"
+			version = "7.43.0"
 		}
 	}
 }
@@ -15,6 +15,7 @@ terraform {
 // Setup GCP provider and project name
 provider "google" {
 	project = var.project_name
+	region	= var.region
 }
 
 // Variable for project name - set in tfvars
