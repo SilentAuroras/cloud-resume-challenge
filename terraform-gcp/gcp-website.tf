@@ -16,6 +16,8 @@ variable "domain" {
 // TLS Cert
 resource "google_compute_managed_ssl_certificate" "tls_cert" {
   name = "tls-cert-url-map"
+
+  # Subdomain for resume project
   managed {
     domains = [
       "www.resume.${var.domain}"
@@ -26,17 +28,18 @@ resource "google_compute_managed_ssl_certificate" "tls_cert" {
 // Create static bucket for website
 resource "google_storage_bucket" "static-site" {
     name = "${random_id.bucket-prefix.hex}-${var.bucket_suffix}"
-
     location = "US"
     force_destroy = true
 
     uniform_bucket_level_access = true
 
+  # Point static site to resume.html
     website {
         main_page_suffix = "resume.html"
         not_found_page = "404.html"
     }
 
+    # CORS
     cors {
         origin = ["*"]
         method = ["GET", "HEAD", "POST", "DELETE"]
@@ -68,7 +71,7 @@ resource "google_storage_bucket_object" "css_obj" {
     bucket = google_storage_bucket.static-site.id
 }
 
-// Update the JavaScript to call the CloudFunction
+// Update the JavaScript to call the CloudFunction URL
 resource "local_file" "js_updated" {
   content = templatefile("../website/resume-template.js", {
     cloud_function_url = google_cloudfunctions2_function.py-to-firestore.service_config[0].uri

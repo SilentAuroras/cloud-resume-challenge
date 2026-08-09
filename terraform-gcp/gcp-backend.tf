@@ -1,11 +1,13 @@
 // Firestore database
 resource "google_firestore_database" "resume-firestore" {
-	name            = "(default)"     # Set the default firestore database so cloud run knows what to use
+	name            = "(default)"
 	project         = var.project_name
 	location_id     = var.region
 	type            = "FIRESTORE_NATIVE"
     deletion_policy = "DELETE"
-	depends_on = [ google_storage_bucket.cloud-function-bucket ]
+	depends_on = [
+		google_storage_bucket.cloud-function-bucket
+	]
 }
 
 // Storage bucket for cloud function code
@@ -15,7 +17,7 @@ resource "google_storage_bucket" "cloud-function-bucket" {
 	force_destroy = true
 }
 
-// Zip up the cloud function directory
+// Zip the cloud function directory
 data "archive_file" "cloud-function-zip" {
 	type        = "zip"
 	source_dir  = "./cloud-function"
@@ -34,6 +36,8 @@ resource "google_cloudfunctions2_function" "py-to-firestore" {
 	name     = "py-to-firestore"
 	project  = var.project_name
 	location = var.region
+
+	# Set python settings
 	build_config {
 		runtime     = "python313"
 		entry_point = "entry_point"
@@ -51,7 +55,7 @@ resource "google_cloudfunctions2_function" "py-to-firestore" {
 	}
 }
 
-// IAM permissions to allow public to run the function
+// IAM permissions to allow public access
 resource "google_cloud_run_service_iam_member" "public_access" {
   location = google_cloudfunctions2_function.py-to-firestore.location
   member   = "allUsers"
