@@ -4,6 +4,8 @@ This is a learning repository for performing the Cloud Resume Challenge as outli
 
 -   https://cloudresumechallenge.dev/
 
+## Deployment Steps
+
 This challenge will use Terraform to provision the infrastructure in GCP. The deployment steps are as follows:
 
 1. Setup GCP CLI authentication
@@ -30,7 +32,7 @@ Requirements:
 -   GCP account and gcloud CLI
 -   Terraform
 
-# Checklist
+## Checklist
 
 -   [x] Get the Google Cloud Digital Leader certification (or higher)
 -   [x] Write your resume in HTML
@@ -42,10 +44,31 @@ Requirements:
 -   [x] Store and update the visitor count in Google Cloud Firestore
 -   [x] Create an API (e.g., with Google Cloud Functions) to interact with Firestore
 -   [x] Write the serverless function in Python using Google Cloud Client Libraries
--   [ ] Include tests for your Python code
+-   [x] Include tests for your Python code
 -   [x] Define infrastructure using Terraform (Infrastructure as Code)
 -   [x] Use GitHub for source control of backend code
--   [ ] Set up CI/CD for backend with Cloud Build (run tests, deploy on success)
--   [ ] Use a separate GitHub repo for website code and set up CI/CD for frontend
+-   [x] Set up CI/CD for backend with Cloud Build (run tests, deploy on success)
+-   [x] Use a separate GitHub repo for website code and set up CI/CD for frontend
 -   [x] Write and link a short blog post about your project learnings
     -   Adding screenshots and documentation here
+
+## Data Flow
+
+```mermaid
+sequenceDiagram
+participant Browser as Visitor
+participant CDN as Cloud CDN
+participant GCS as Cloud Storage
+participant Function as Cloud Function
+participant Firestore as Firestore
+
+Browser->>CDN: Request over HTTPS
+CDN->>GCS: Retrieve static resume website
+GCS-->>CDN: Return static resume
+CDN-->>Browser: Serve website
+Browser->>Function: JavaScript call increment function
+Function->>Firestore: Increment visitor count
+Function->>Firestore: Read visitor count
+Firestore-->>Function: Return visitor count
+Function-->>Browser: Return count as JSON
+```
