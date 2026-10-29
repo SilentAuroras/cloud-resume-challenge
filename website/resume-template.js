@@ -15,18 +15,18 @@ async function visitorCount() {
 			throw new Error("Failed to fetch function");
 		}
 
-		// No error, update count
-		document.getElementById("visitor-count").textContent = response.count;
+		// Parse json response and update count in body
+		const result = await response.json();
+		document.getElementById("visitor-count").textContent = result.count;
 	}
-	
+
 	catch (error) {
 		// Catch cloud function error
-		console.error("Error updating visitor count: ", error);
-		document.getElementById(("visitor-count".textContent = "n/a"));
+		document.getElementById("visitor-count").textContent = "n/a";
 	}
 }
 
 // Run function on page load
 document.addEventListener("DOMContentLoaded", function() {
-  visitorCount();
+	visitorCount();
 });

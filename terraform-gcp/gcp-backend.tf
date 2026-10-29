@@ -52,6 +52,7 @@ resource "google_cloudfunctions2_function" "py-to-firestore" {
 		available_memory = "256M"
 		timeout_seconds  = 60
 		ingress_settings = "ALLOW_ALL"
+		service_account_email = google_service_account.resume_function.email
 	}
 }
 
@@ -61,4 +62,17 @@ resource "google_cloud_run_service_iam_member" "public_access" {
   member   = "allUsers"
   role     = "roles/run.invoker"
   service  = google_cloudfunctions2_function.py-to-firestore.name
+}
+
+// Service account for cloud run
+resource "google_service_account" "resume_function" {
+  account_id   = "resume_function"
+  display_name = "SA - Visitor count Cloud Function"
+}
+
+// IAM membership
+resource "google_project_iam_member" "cloud_function_firestore" {
+  project = var.project_name
+  member  = "serviceAccount:${google_service_account.resume_function.email}"
+  role    = "roles/datastore.user"
 }

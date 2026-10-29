@@ -1,5 +1,5 @@
 import functions_framework
-from flask import jsonify
+from flask import jsonify, make_response
 from google.cloud import firestore
 
 # Setup firestore client
@@ -8,7 +8,6 @@ db = firestore.Client()
 # Setup entry point for the Cloud Function
 @functions_framework.http
 def entry_point(request):
-
     try:
         # Read the current count
         doc_ref = db.collection("count").document("visitor_count_doc")
@@ -18,12 +17,20 @@ def entry_point(request):
 
         # Read back the updated value
         doc = doc_ref.get()
-        new_count = doc.get("count", 0)
+        count = (doc.to_dict() or {}).get("count", 0)
 
-        # Return new count
-        return jsonify({"status": "success", "count": new_count}), 200
+        # Return json response with count
+        response = jsonify({"status": "success", "count": count})
 
-    except Exception as e:
+    # Catch
+    except Exception:
+        response = jsonify({"status": "error", "message": "Internal server error"})
+        response.status_code = 500
 
-        # Return reading error
-        return jsonify({"status": "error", "message": "error"}), 500
+    # CORS
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Methods"] = "GET, OPTIONS"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type"
+
+    # Return json response
+    return response
