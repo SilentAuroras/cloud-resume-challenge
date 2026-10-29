@@ -76,7 +76,9 @@ Function-->>Browser: Return count as JSON
 ## Screenshots
 
 Upon viewing the website, the visitor count gets increased and updated in Firestore as seen below:
+
 ![website](screenshots/website.png)
 
 The JSON response can be seen below:
+
 ![json](screenshots/json.png)
